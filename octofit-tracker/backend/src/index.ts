@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import apiRouter from './routes/api';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ const baseUrl = codespaceName
 
 app.use(cors());
 app.use(express.json());
+app.use('/api', apiRouter);
 
 mongoose
   .connect(MONGODB_URI)
