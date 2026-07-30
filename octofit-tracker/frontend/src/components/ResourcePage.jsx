@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { fetchCollection } from '../api'
+import { fetchEndpoint } from '../api'
 import ResourceTable from './ResourceTable'
 
-function ResourcePage({ title, eyebrow, resource, columns }) {
+function ResourcePage({ title, eyebrow, resource, endpoint, columns }) {
   const [rows, setRows] = useState([])
   const [status, setStatus] = useState('loading')
   const [error, setError] = useState('')
@@ -13,7 +13,7 @@ function ResourcePage({ title, eyebrow, resource, columns }) {
     async function loadRows() {
       try {
         setStatus('loading')
-        const collection = await fetchCollection(resource)
+        const collection = await fetchEndpoint(endpoint, resource)
 
         if (isActive) {
           setRows(collection)
@@ -32,7 +32,7 @@ function ResourcePage({ title, eyebrow, resource, columns }) {
     return () => {
       isActive = false
     }
-  }, [resource])
+  }, [endpoint, resource])
 
   return (
     <section className="resource-page">

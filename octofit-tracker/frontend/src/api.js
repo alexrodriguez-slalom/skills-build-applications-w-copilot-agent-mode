@@ -37,3 +37,13 @@ export async function fetchCollection(resource) {
 
   return normalizeCollectionResponse(await response.json())
 }
+
+export async function fetchEndpoint(endpoint, resource) {
+  const response = await fetch(endpoint)
+
+  if (!response.ok) {
+    throw new Error(`Unable to load ${resource}: ${response.status}`)
+  }
+
+  return normalizeCollectionResponse(await response.json())
+}

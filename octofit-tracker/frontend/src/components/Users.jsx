@@ -1,5 +1,9 @@
 import ResourcePage from './ResourcePage'
 
+const endpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+  : 'http://localhost:8000/api/users/'
+
 const columns = [
   { key: 'firstName', label: 'First name' },
   { key: 'lastName', label: 'Last name' },
@@ -10,7 +14,7 @@ const columns = [
 ]
 
 function Users() {
-  return <ResourcePage title="Users" eyebrow="Member Profiles" resource="users" columns={columns} />
+  return <ResourcePage title="Users" eyebrow="Member Profiles" resource="users" endpoint={endpoint} columns={columns} />
 }
 
 export default Users
